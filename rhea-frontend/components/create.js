@@ -18,18 +18,10 @@ class Create extends Component {
         let newCard = {term: this.state.term, definition: this.state.definition}
         console.log('new card', newCard)
         this.setState({
-            term: '',
-            definition: '',
             cards: [...this.state.cards, newCard]
         }, () =>  {
             console.log('new state', this.state)
             this.props.createCardSet(this.state)});
-
-
-        // console.log('state', this.state);
-
-
-       
     }
 
 
