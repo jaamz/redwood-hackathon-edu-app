@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { createCardSet } from '../redux/actions';
 import { connect } from 'react-redux';
-
+import Header from './header';
 
 class Create extends Component {
     state = {
@@ -29,6 +29,7 @@ class Create extends Component {
         let { textInputContainer } = styles
         return (
             <View>
+             <Header />
                 <View style={textInputContainer}>
                     <TextInput
                         style={styles.textInput}
@@ -59,6 +60,7 @@ class Create extends Component {
 
                 <TouchableOpacity
                     onPress={this.submitSet}>
+                    style={styles.buttonStyle}
                     <Text>
                         Submit
                     </Text>
@@ -79,7 +81,10 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
         height: 50,
-
+    },
+    buttonStyle: {
+        borderColor: 'black',
+        borderWidth:2
     }
 })
 
