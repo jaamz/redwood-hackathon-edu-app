@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const cardControllers = require('../controllers/card-controller');
-let { getAllCards, getCardById, help } = cardControllers;
+const { help, getAllCards, getCardById, createCard, editCard, deleteCard } = cardControllers;
 
-
-// get all flashcards
 router.get('/', help);
 router.get('/all', getAllCards);
-// get by ID
 router.get('/:id', getCardById);
-
-
+router.post('/', createCard);
+router.put('/:id', editCard);
+router.delete('/:id', deleteCard);
 
 module.exports = router;
