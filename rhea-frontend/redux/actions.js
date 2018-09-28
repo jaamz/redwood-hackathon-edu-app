@@ -21,13 +21,15 @@ export const getCardSetById = (id) => async dispatch => {
     }
 }
 
-export const createCardSet = () => async dispatch => {
+export const createCardSet = (card) => async dispatch => {
     try {
-        let response = await axios.get('http://localhost:5000/api/flashcards/')
-        dispatch({ type: CREATE_CARDSET, payload: response.data.message})
+        console.log('submitted card:',card)
+        let response = await axios.post('http://localhost:5000/api/flashcards/', card)
+        console.log('respones:', response);
+        dispatch({ type: CREATE_CARDSET, payload: response.data})
     } catch (e) {
-        console.log(`Error: ${e}`);
-
+        // console.log(`Error: ${e.response.data}`);
+        console.log(e.response.data)
     }
 }
 
