@@ -85,4 +85,4 @@ const flashCards = [
     }
 ]
 
-export default flashCards;
+module.exports = flashCards;

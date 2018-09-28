@@ -1,5 +1,5 @@
 const FlashCards = require('../models/flashcards');
-
+const FlashCardData = require('../data/flashcards');
 
 const help = (req, res) => {
     res.status(200).send({ message: "Welcome to Flashcard API", 
@@ -10,6 +10,15 @@ const help = (req, res) => {
                            DeleteCard: '/:id',
                         })
 };
+
+const seed = async (req, res) => {
+    try {
+        let cards = await FlashCards.create(FlashCardData)
+        res.status(200).send({cards});
+    } catch (e) {
+        res.status(500).send({ Error: e.message});
+    }
+}
 
 const getAllCards = async (req, res) => {
     try {
@@ -71,4 +80,4 @@ const deleteCard = (req, res) => {
     })
 }
 
-module.exports = { help, getAllCards, getCardById, createCard, editCard, deleteCard };
+module.exports = { help, seed, getAllCards, getCardById, createCard, editCard, deleteCard };
