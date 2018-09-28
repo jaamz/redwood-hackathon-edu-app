@@ -11,8 +11,8 @@ router.get('/', function (req, res) {
 });
 
 // get all flashcards
-router.get('/allcards', getAllCards);
-
+router.get('/all', getAllCards);
+router.get('/help', help);
 
 
 module.exports = router;
