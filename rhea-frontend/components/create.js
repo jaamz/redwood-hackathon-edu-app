@@ -1,46 +1,81 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, View, TextInput } from 'react-native';
-import Button from './Button';
-class Create extends Component {
-    state = {  
+import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { createCardSet } from '../redux/actions';
+import { connect } from 'react-redux';
 
+
+class Create extends Component {
+    state = {
+        setname: '',
+        description: '',
+        term: '',
+        definition: '',
+        cards: [{term: 'test', definition: 'test'}]
     }
-    render() { 
+
+    submitSet = () => {
+        // console.log(this.state)
+        let newCard = {term: this.state.term, definition: this.state.definition}
+        console.log('new card', newCard)
+        this.setState({
+            term: '',
+            definition: '',
+            cards: [...this.state.cards, newCard]
+        }, () =>  {
+            console.log('new state', this.state)
+            this.props.createCardSet(this.state)});
+
+
+        // console.log('state', this.state);
+
+
+       
+    }
+
+
+    render() {
         let { textInputContainer } = styles
-        return (  
+        return (
             <View>
                 <View style={textInputContainer}>
                     <TextInput
                         style={styles.textInput}
-                        onChangeText={setName=>{this.setState({setName})}}
+                        value={this.state.setname}
+                        onChangeText={setname => { this.setState({ setname }) }}
                         placeholder='Enter Set Name Here...'
                     />
                     <TextInput
                         style={styles.textInput}
-                        onChangeText={description=>{this.setState({description})}}
+                        value={this.state.description}
+                        onChangeText={description => { this.setState({ description }) }}
                         placeholder='Enter Description Here...'
                     />
                     <TextInput
                         style={styles.textInput}
-                        onChangeText={cardTerm=>{this.setState({cardTerm})}}
+                        value={this.state.term}
+                        onChangeText={term => { this.setState({ term: term }) }}
                         placeholder='Enter Card Term Here...'
                     />
                     <TextInput
                         style={styles.textInput}
-                        onChangeText={cardDefinition=>{this.setState({cardDefinition})}}
+                        value={this.state.definition}
+                        onChangeText={definition => { this.setState({ definition: definition}) }}
                         placeholder='Enter Card Definition Here...'
                     />
-                    
+
                 </View>
-                {/* 
-                <TouchableOpacity style={props.buttonStyle} onPress={props.buttonPressed}>
-                    <Text style={props.textStyle}> {props.text} </Text>
-                </TouchableOpacity> */}
+
+                <TouchableOpacity
+                    onPress={this.submitSet}>
+                    <Text>
+                        Submit
+                    </Text>
+                </TouchableOpacity>
             </View>
         );
     }
 }
- 
+
 const styles = StyleSheet.create({
     textInputContainer: {
         borderWidth: 1,
@@ -55,4 +90,15 @@ const styles = StyleSheet.create({
 
     }
 })
-export default Create;
+
+const mapDispatchToProps = dispatch => ({
+    createCardSet: (card) => dispatch(createCardSet(card))
+})
+
+export default connect(null, mapDispatchToProps)(Create);
+
+
+// local state
+
+// when card set is createtd
+// pass in local state

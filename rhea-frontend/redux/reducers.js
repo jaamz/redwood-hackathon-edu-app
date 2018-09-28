@@ -17,7 +17,7 @@ const rootReducer = (state = initialState, action) => {
         // console.log("Trying to get cardset by ID")
             return { ...state, selectedCardSet: action.payload };
         case CREATE_CARDSET:
-            return { ...state, flashCardSets: [...flashCardSets, action.payload] };
+            return { ...state, flashCardSets: [...state.flashCardSets, action.payload] };
         case EDIT_CARDSET:
             return { ...state, flashCardSets: action.payload };
         case DELETE_CARDSET:
