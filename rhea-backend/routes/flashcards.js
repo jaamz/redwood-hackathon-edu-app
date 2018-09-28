@@ -12,7 +12,10 @@ router.get('/', function (req, res) {
 
 // get all flashcards
 router.get('/all', getAllCards);
-router.get('/help', help);
+// router.get('/help', help);
+// get by ID
+router.get('/:id', getCardById);
+
 
 
 module.exports = router;
