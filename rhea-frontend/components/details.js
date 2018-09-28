@@ -7,6 +7,11 @@ class Details extends Component {
     state = {  
 
     }
+    static navigationOptions = ({navigation}) => {
+        return {
+            title: navigation.getParam('DetailTitle', 'Detail'),
+        }
+      };
 
     componentDidMount() {
         this.props.getCardSetById("5bae8ef3b93b002f1e577c90")

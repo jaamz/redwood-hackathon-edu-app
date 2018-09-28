@@ -15,13 +15,13 @@ class MainPage extends Component {
     }
 
     static navigationOptions = {
-        // title: 'Home'
         header: null
       };
     
       navigateToCardSetDetail = () => {
         // this.props.loadDogImage();
-        this.props.navigation.navigate('detail');
+        this.props.navigation.navigate('detail', { detailTitle: this.props.flashCards[0].setname});
+        
       }
     
     render() {

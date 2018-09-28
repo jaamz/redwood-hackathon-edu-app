@@ -8,7 +8,7 @@ class Profile extends Component {
     render() { 
         return (  
             <View>
-                
+                <Text> This is my profile page!</Text>
             </View>
         );
     }
