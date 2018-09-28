@@ -1,5 +1,5 @@
 export const GET_ALL_CARDSETS  = 'GET_ALL_CARDSETS';
-export const GET_CARDSETS_BY_ID = 'GET_CARDSET_BY_ID';
+export const GET_CARDSET_BY_ID = 'GET_CARDSET_BY_ID';
 export const CREATE_CARDSET = 'CREATE_CARDSET';
 export const EDIT_CARDSET   = 'EDIT_CARDSET';
 export const DELETE_CARDSET = 'DELETE_CARDSET';

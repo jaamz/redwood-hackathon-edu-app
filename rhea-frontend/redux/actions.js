@@ -7,16 +7,22 @@ export const getAllCardSets = () => async dispatch => {
         console.log(response)
         dispatch({ type: GET_ALL_CARDSETS, payload: response.data.cardsets})
     } catch (e) {
-        console.log(`Error: ${e.response.data}`);// might be wronrg about this .data.message
+
+        console.log(`Error: ${e}`);
+
+        // console.log(`Error: ${e.response.data}`);// might be wronrg about this .data.message
     }
 }
 
 export const getCardSetById = (id) => async dispatch => {
     try {
-        let response = await axios.get('http://localhost:5000/api/flashcards/')
-        dispatch({ type: GET_CARDSET_BY_ID, payload: response.data.message})
+        console.log("ID:",id);
+        let response = await axios.get(`http://localhost:5000/api/flashcards/${id}`)
+        console.log("response: ", response.data.cardSet)
+        dispatch({ type: GET_CARDSET_BY_ID, payload: response.data.cardSet})
+        console.log("dispatch passed");
     } catch (e) {
-        console.log(`Error: ${e.response.data}`);
+        console.log(`Error: ${e}`);
     }
 }
 
@@ -25,7 +31,8 @@ export const createCardSet = () => async dispatch => {
         let response = await axios.get('http://localhost:5000/api/flashcards/')
         dispatch({ type: CREATE_CARDSET, payload: response.data.message})
     } catch (e) {
-        console.log(`Error: ${e.response.data}`);
+        console.log(`Error: ${e}`);
+
     }
 }
 
@@ -34,7 +41,9 @@ export const editCardSet = (id) => async dispatch => {
         let response = await axios.get('http://localhost:5000/api/flashcards/')
         dispatch({ type: EDIT_CARDSET, payload: response.data.message})
     } catch (e) {
-        console.log(`Error: ${e.response.data}`);
+        console.log(`Error: ${e}`);
+
+        // console.log(`Error: ${e.response.data}`);
     }
 }
 
@@ -43,7 +52,9 @@ export const deleteCardSet = (id) => async dispatch => {
         let response = await axios.get('http://localhost:5000/api/flashcards/')
         dispatch({ type: DELETE_CARDSET, payload: response.data.message})
     } catch (e) {
-        console.log(`Error: ${e.response.data}`);
+        console.log(`Error: ${e}`);
+
+        // console.log(`Error: ${e.response.data}`);
     }
 }
 

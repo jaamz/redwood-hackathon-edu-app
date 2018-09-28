@@ -14,8 +14,6 @@ class MainPage extends Component {
         this.props.getAllCardSets()
     }
 
-
-    
     render() {
         console.log(this.props.flashCards)
         return (
