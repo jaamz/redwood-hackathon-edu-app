@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, FlatList, TouchableOpacity, Dimensions } from '
 import { connect } from 'react-redux';
 import { getCardSetById } from '../redux/actions';
 
+const {width, height} = Dimensions.get("screen")
+
 class Details extends Component {
     state = {  
 
@@ -13,19 +15,23 @@ class Details extends Component {
     }
 
     render() { 
+        let { selectedCardSet } = this.props
         return (  
             <View>
                 <View>
+                    { selectedCardSet.cards ? 
                     <FlatList
-                    data={this.props.selectedCardSet && this.props.selectedCardSet}
+                    data={ selectedCardSet.cards && selectedCardSet.cards }
                     keyExtractor={(cards, index) => index + ''}
                     renderItem={({ item }) =>
-                    <View>
-                    <Text>{item.setname}</Text>
-                    <Text>{item.description}</Text> 
-                    <Text>{item.cards}</Text>
+                    <View
+                    style={styles.cardBox}>
+                    <Text>{item.term}</Text>
+                    <Text>{item.definition}</Text>
                     </View> }
                     />
+                    :<Text>Loading</Text>
+                    }
                 </View>
             </View>
         );
@@ -41,4 +47,28 @@ const mapStateToProps = state => ({
     selectedCardSet: state.selectedCardSet
 })
 
+
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+    },
+    listContainer: {
+        alignItems: 'center'
+    },
+    cardBox: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderWidth: 1,
+        borderColor: 'black',
+        height: 200,
+        width: width - 50,
+        marginLeft: 20,
+        marginRight: 20,
+    }
+})
+        
+
 export default connect(mapStateToProps, mapDispatchToProps)(Details);
+
+

@@ -6,8 +6,6 @@ import Create from './components/create';
 import Profile from './components/profile';
 import Details from './components/details';
 import MainPage from './components/MainPage';
-import Details from './components/details';
-
 import { createStore, applyMiddleware } from 'redux';
 import { createStackNavigator } from 'react-navigation';
 import thunk from 'redux-thunk';
@@ -29,7 +27,7 @@ const TabNavigator = createBottomTabNavigator(
         detail: Details
       },
       {
-        initialRouteName: 'home'
+        initialRouteName: 'detail'
       }
     ),
     Create: Create,
