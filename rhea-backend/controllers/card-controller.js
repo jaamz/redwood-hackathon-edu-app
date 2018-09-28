@@ -70,8 +70,10 @@ const editCardSet = (req, res) => {
 }
 
 const deleteCardSet = (req, res) => {
-    let {id} = req.params.id
+    let {id} = req.params
     FlashCards.findByIdAndRemove(id, (err, cardSet) => {
+        console.log(id);
+        console.log(cardSet);
         if(err) {
             res.status(500).send({ message: 'There was an error with our database.', error: err.message })
         } else if (!cardSet) {

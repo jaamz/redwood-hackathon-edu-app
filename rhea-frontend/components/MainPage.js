@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Header from '../components/header';
 import { connect } from 'react-redux';
+import { getAllCardSets } from '../redux/actions';
+
+
 
 class MainPage extends Component {
     state={}
 
-    
+    componentDidMount() {
+        this.props.getAllCardSets()
+    }
 
 
 
@@ -37,7 +42,7 @@ const styles = StyleSheet.create({
 
 
 const mapDispatchToProps = dispatch => ({
-
+    getAllCardSets: () => dispatch(getAllCardSets())
 })
 
 export default connect(null, mapDispatchToProps)(MainPage);
