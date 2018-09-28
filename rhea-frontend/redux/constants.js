@@ -3,3 +3,4 @@ export const GET_CARDSET_BY_ID = 'GET_CARDSET_BY_ID';
 export const CREATE_CARDSET = 'CREATE_CARDSET';
 export const EDIT_CARDSET   = 'EDIT_CARDSET';
 export const DELETE_CARDSET = 'DELETE_CARDSET';
+export const REQUESTED_DATA = 'REQUESTED_DATA';

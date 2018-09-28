@@ -1,28 +1,23 @@
-import { GET_ALL_CARDSETS, GET_CARDSET_BY_ID, CREATE_CARDSET, EDIT_CARDSET, DELETE_CARDSET } from './constants';
+import { REQUESTED_DATA, GET_ALL_CARDSETS, GET_CARDSET_BY_ID, CREATE_CARDSET, EDIT_CARDSET, DELETE_CARDSET } from './constants';
 import axios from 'axios';
 
 export const getAllCardSets = () => async dispatch => {
     try {
         let response = await axios.get('http://localhost:5000/api/flashcards/all')
-        console.log(response)
         dispatch({ type: GET_ALL_CARDSETS, payload: response.data.cardsets})
     } catch (e) {
-
         console.log(`Error: ${e}`);
-
-        // console.log(`Error: ${e.response.data}`);// might be wronrg about this .data.message
     }
 }
 
 export const getCardSetById = (id) => async dispatch => {
     try {
-        console.log("ID:",id);
+        // dispatch({ type: REQUESTED_DATA });
         let response = await axios.get(`http://localhost:5000/api/flashcards/${id}`)
-        console.log("response: ", response.data.cardSet)
         dispatch({ type: GET_CARDSET_BY_ID, payload: response.data.cardSet})
-        console.log("dispatch passed");
     } catch (e) {
-        console.log(`Error: ${e}`);
+        // console.log(`Error: ${e}`);
+        console.log(e.response.data)
     }
 }
 

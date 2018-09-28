@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { StyleSheet, Text, View, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import Header from '../components/header';
 import { connect } from 'react-redux';
-import { getAllCardSets } from '../redux/actions';
+import { getAllCardSets, getCardSetById } from '../redux/actions';
 
 const {width, height} = Dimensions.get("screen")
 
@@ -13,14 +13,20 @@ class MainPage extends Component {
     componentDidMount() {
         this.props.getAllCardSets()
     }
-
+    componentDidUpdate(prevProps, prevState) {
+        console.log(prevProps);
+        console.log(prevState);
+    }
     static navigationOptions = {
         header: null
       };
     
-      navigateToCardSetDetail = () => {
+      navigateToCardSetDetail = (index) => {
         // this.props.loadDogImage();
-        this.props.navigation.navigate('detail', { detailTitle: this.props.flashCards[0].setname});
+        // console.log("Index:", index);
+        // console.log(this.props.flashCards[index]._id);
+        this.props.getCardSetById(this.props.flashCards[index]._id)
+        this.props.navigation.navigate('detail', { detailTitle: this.props.flashCards[index].setname});
         
       }
     
@@ -33,10 +39,10 @@ class MainPage extends Component {
                     <FlatList 
                     data={this.props.flashCards}
                     keyExtractor={(cards,index) => index + ''}
-                    renderItem={({ item }) => 
+                    renderItem={({ item, index }) => 
                         <TouchableOpacity
                         style={styles.cardBox}
-                        onPress={this.navigateToCardSetDetail}>
+                        onPress={ () => {this.navigateToCardSetDetail(index)}}>
                             <Text>
                                 { item.setname }
                             </Text>
@@ -74,7 +80,9 @@ const styles = StyleSheet.create({
 
 
 const mapDispatchToProps = dispatch => ({
-    getAllCardSets: () => dispatch(getAllCardSets())
+    getAllCardSets: () => dispatch(getAllCardSets()),
+    getCardSetById: (id) => dispatch(getCardSetById(id))
+
 })
 
 const mapStateToProps = state => ({

@@ -1,21 +1,24 @@
-import { GET_ALL_CARDSETS, GET_CARDSET_BY_ID, CREATE_CARDSET, EDIT_CARDSET, DELETE_CARDSET } from './constants';
+import { REQUESTED_DATA, GET_ALL_CARDSETS, GET_CARDSET_BY_ID, CREATE_CARDSET, EDIT_CARDSET, DELETE_CARDSET } from './constants';
 
 const initialState = {
     flashCardSets: [],
-    selectedCardSet: {}
+    selectedCardSet: {},
+    isDataLoading: false,
 
 }
 
 const rootReducer = (state = initialState, action) => {
     // console.log("trying to find action type")
     switch (action.type) {
+        case REQUESTED_DATA:
+            return {...state, isDataLoading: true};
         case GET_ALL_CARDSETS:
         // console.log("Trying to get all cardsets");
             return { ...state, flashCardSets: action.payload };
         case GET_CARDSET_BY_ID:
         console.log("Payload: " + action.payload)
         // console.log("Trying to get cardset by ID")
-            return { ...state, selectedCardSet: action.payload };
+            return { ...state, selectedCardSet: action.payload, isDataLoading: false };
         case CREATE_CARDSET:
             return { ...state, flashCardSets: [...flashCardSets, action.payload] };
         case EDIT_CARDSET:

@@ -11,20 +11,20 @@ class Details extends Component {
     }
     static navigationOptions = ({navigation}) => {
         return {
-            title: navigation.getParam('DetailTitle', 'Detail'),
+            title: navigation.getParam('detailTitle', 'Detail'),
         }
       };
 
     componentDidMount() {
-        this.props.getCardSetById("5bae8ef3b93b002f1e577c90")
+        // this.props.getCardSetById("5bae8ef3b93b002f1e577c90")
     }
 
     render() { 
-        let { selectedCardSet } = this.props
+        let { selectedCardSet, isDataLoading } = this.props;
         return (  
             <View>
                 <View>
-                    { selectedCardSet.cards ? 
+                    { !isDataLoading ? 
                     <FlatList
                     data={ selectedCardSet.cards && selectedCardSet.cards }
                     keyExtractor={(cards, index) => index + ''}
@@ -35,7 +35,7 @@ class Details extends Component {
                     <Text>{item.definition}</Text>
                     </View> }
                     />
-                    :<Text>Loading</Text>
+                    :<Text>Loading...</Text>
                     }
                 </View>
             </View>
@@ -49,7 +49,8 @@ const mapDispatchToProps = dispatch => ({
 })
 
 const mapStateToProps = state => ({
-    selectedCardSet: state.selectedCardSet
+    selectedCardSet: state.selectedCardSet,
+    isDataLoading: state.isDataLoading
 })
 
 
