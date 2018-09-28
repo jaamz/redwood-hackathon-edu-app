@@ -1,13 +1,44 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, Text, View, FlatList, TouchableOpacity, Dimensions } from 'react-native';
+import { connect } from 'react-redux';
+import { getCardSetById } from '../redux/actions';
+
 class Details extends Component {
-    render() {
-        return (
+    state = {  
+
+    }
+
+    componentDidMount() {
+        this.props.getCardSetById("5bae8ef3b93b002f1e577c90")
+    }
+
+    render() { 
+        return (  
             <View>
-                <Text> This is the details page</Text>
+                <View>
+                    <FlatList
+                    data={this.props.selectedCardSet && this.props.selectedCardSet}
+                    keyExtractor={(cards, index) => index + ''}
+                    renderItem={({ item }) =>
+                    <View>
+                    <Text>{item.setname}</Text>
+                    <Text>{item.description}</Text> 
+                    <Text>{item.cards}</Text>
+                    </View> }
+                    />
+                </View>
             </View>
         );
     }
 }
 
-export default Details;
+
+const mapDispatchToProps = dispatch => ({
+    getCardSetById: (id) => dispatch(getCardSetById(id))
+})
+
+const mapStateToProps = state => ({
+    selectedCardSet: state.selectedCardSet
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Details);

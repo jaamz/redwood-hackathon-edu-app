@@ -45,13 +45,6 @@ class MainPage extends Component {
                 </View>
             </View>
 
-
-
-
-
-
-
-
         )
     }
 }

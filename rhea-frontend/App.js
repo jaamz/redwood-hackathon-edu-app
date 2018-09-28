@@ -3,7 +3,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import Create from './components/create';
-import Profile from './components/profile'
+import Profile from './components/profile';
+import Details from './components/details';
 import MainPage from './components/MainPage';
 import Details from './components/details';
 

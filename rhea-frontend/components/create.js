@@ -32,7 +32,7 @@ class Create extends Component {
                     />
                     
                 </View>
-                {/* <Button 
+                {/* 
                 <TouchableOpacity style={props.buttonStyle} onPress={props.buttonPressed}>
                     <Text style={props.textStyle}> {props.text} </Text>
                 </TouchableOpacity> */}
