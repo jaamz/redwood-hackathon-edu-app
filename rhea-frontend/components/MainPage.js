@@ -14,7 +14,15 @@ class MainPage extends Component {
         this.props.getAllCardSets()
     }
 
-
+    static navigationOptions = {
+        // title: 'Home'
+        header: null
+      };
+    
+      navigateToCardSetDetail = () => {
+        // this.props.loadDogImage();
+        this.props.navigation.navigate('detail');
+      }
     
     render() {
         console.log(this.props.flashCards)
@@ -27,7 +35,8 @@ class MainPage extends Component {
                     keyExtractor={(cards,index) => index + ''}
                     renderItem={({ item }) => 
                         <TouchableOpacity
-                        style={styles.cardBox}>
+                        style={styles.cardBox}
+                        onPress={this.navigateToCardSetDetail}>
                             <Text>
                                 { item.setname }
                             </Text>

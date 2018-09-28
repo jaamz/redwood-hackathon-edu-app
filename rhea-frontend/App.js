@@ -5,9 +5,10 @@ import { Ionicons } from '@expo/vector-icons';
 import Create from './components/create';
 import Profile from './components/profile'
 import MainPage from './components/MainPage';
-
+import Details from './components/details';
 
 import { createStore, applyMiddleware } from 'redux';
+import { createStackNavigator } from 'react-navigation';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import rootReducer from './redux/reducers';
@@ -21,7 +22,15 @@ const store = createStore(
 
 const TabNavigator = createBottomTabNavigator(
   {
-    Dashboard: MainPage,
+    Dashboard: createStackNavigator(
+      {
+        home: MainPage,
+        detail: Details
+      },
+      {
+        initialRouteName: 'home'
+      }
+    ),
     Create: Create,
     Profile: Profile
   },
@@ -46,7 +55,6 @@ const TabNavigator = createBottomTabNavigator(
       inactiveTintColor: 'gray',
     },
   });
-
 
 const App = () =>( 
   <Provider store={store}>
