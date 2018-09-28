@@ -2,8 +2,6 @@ const flashCards = [
     {
         "setname": "Biology",
         "description" : "Flashcards for studying Biology 101",
-        "creator": "James",
-        "cardColor": "#698B22",
         "cards" : [
             {
                 "term" : "Monomer",
@@ -42,8 +40,6 @@ const flashCards = [
     {
         "setname": "History 101",
         "description" : "Flashcards for studying History",
-        "creator": "James",
-        "cardColor": "#FFAF00",
         "cards" : [
             {
                 "term" : "Monarchy",
