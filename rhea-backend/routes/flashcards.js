@@ -1,14 +1,14 @@
 const express = require('express');
 const router = express.Router();
 const cardControllers = require('../controllers/card-controller');
-const { help, seed, getAllCards, getCardById, createCard, editCard, deleteCard } = cardControllers;
+const { help, seed, getAllCardSets, getCardSetById, createCardSet, editCardSet, deleteCardSet } = cardControllers;
 
 router.get('/', help);
-router.get('/all', getAllCards);
-router.get('/:id', getCardById);
+router.get('/all', getAllCardSets);
+router.get('/:id', getCardSetById);
 router.post('/seed', seed);
-router.post('/', createCard);
-router.put('/:id', editCard);
-router.delete('/:id', deleteCard);
+router.post('/', createCardSet);
+router.put('/:id', editCardSet);
+router.delete('/:id', deleteCardSet);
 
 module.exports = router;
