@@ -4,11 +4,21 @@ import { createBottomTabNavigator } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 import Create from './components/create';
 import Profile from './components/profile'
-// import Graph from './components/graph'
 import MainPage from './components/MainPage';
-// import Transaction from './components/transaction';
+
+
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import rootReducer from './redux/reducers';
 
 // Tab navigator at bottom of page to route to different parts of app
+const store = createStore(
+  rootReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  applyMiddleware(thunk)
+)
+
 const TabNavigator = createBottomTabNavigator(
   {
     Dashboard: MainPage,
@@ -38,10 +48,13 @@ const TabNavigator = createBottomTabNavigator(
   });
 
 
-const App = () => <View
-                    style={{ flex: 1 }}>
-                    {/* <Header /> */}
-                    <TabNavigator />
-                  </View>
-
+const App = () =>( 
+  <Provider store={store}>
+      <View
+        style={{ flex: 1 }}>
+        {/* <Header /> */}
+        <TabNavigator />
+      </View>
+  </Provider>
+)
 export default App;
