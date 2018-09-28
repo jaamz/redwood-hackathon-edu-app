@@ -8,10 +8,15 @@ class Profile extends Component {
     render() { 
         return (  
             <View>
-                <Text> This is my profile page!</Text>
+                <Text style={styles.textContainer}> This is my profile page!</Text>
             </View>
         );
     }
 }
 
+const styles = StyleSheet.create({
+    textContainer: {
+        margin: 50
+    }
+})
 export default Profile;
