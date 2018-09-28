@@ -13,6 +13,9 @@ router.get('/', function (req, res) {
 // get all flashcards
 router.get('/allcards', getAllCards);
 
+// get by ID
+router.get('/:id', getCardById);
+
 
 
 module.exports = router;
