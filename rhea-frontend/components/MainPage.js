@@ -4,50 +4,48 @@ import Header from '../components/header';
 import { connect } from 'react-redux';
 import { getAllCardSets, getCardSetById } from '../redux/actions';
 
-const {width, height} = Dimensions.get("screen")
+const { width, height } = Dimensions.get("screen")
 
 
 class MainPage extends Component {
-    state={}
+    state = {}
 
     componentDidMount() {
         this.props.getAllCardSets()
     }
-    componentDidUpdate(prevProps, prevState) {
-        console.log(prevProps);
-        console.log(prevState);
+    componentDidUpdate(prevProps) {
+        if(prevProps.flashCards.length !== this.props.flashCards.length) {
+            this.props.getAllCardSets()
+        }
     }
     static navigationOptions = {
         header: null
-      };
-    
-      navigateToCardSetDetail = (index) => {
-        // this.props.loadDogImage();
-        // console.log("Index:", index);
-        // console.log(this.props.flashCards[index]._id);
+    };
+
+    navigateToCardSetDetail = (index) => {
         this.props.getCardSetById(this.props.flashCards[index]._id)
-        this.props.navigation.navigate('detail', { detailTitle: this.props.flashCards[index].setname});
-        
-      }
-    
+        this.props.navigation.navigate('detail', { detailTitle: this.props.flashCards[index].setname });
+
+    }
+
     render() {
-        console.log(this.props.flashCards)
+        // console.log(this.props.flashCards)
         return (
             <View style={styles.container}>
                 <Header />
                 <View style={styles.listContainer}>
-                    <FlatList 
-                    data={this.props.flashCards}
-                    keyExtractor={(cards,index) => index + ''}
-                    renderItem={({ item, index }) => 
-                        <TouchableOpacity
-                        style={styles.cardBox}
-                        onPress={ () => {this.navigateToCardSetDetail(index)}}>
-                            <Text>
-                                { item.setname }
-                            </Text>
-                        </TouchableOpacity>}
-                        />
+                    <FlatList
+                        data={this.props.flashCards}
+                        keyExtractor={(cards, index) => index + ''}
+                        renderItem={({ item, index }) =>
+                            <TouchableOpacity
+                                style={styles.cardBox}
+                                onPress={() => { this.navigateToCardSetDetail(index) }}>
+                                <Text>
+                                    {item.setname}
+                                </Text>
+                            </TouchableOpacity>}
+                    />
                 </View>
             </View>
 
@@ -71,9 +69,9 @@ const styles = StyleSheet.create({
         width: width - 50,
         marginLeft: 20,
         marginRight: 20,
-        
-        
-        
+
+
+
     }
 });
 

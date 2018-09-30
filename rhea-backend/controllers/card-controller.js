@@ -43,17 +43,28 @@ const getCardSetById = async (req, res) => {
     }
 }
 
-const createCardSet = (req, res) => {
+const createCardSet = async (req,res) => {
     let cardSet = req.body;
-    console.log(cardSet)
-    FlashCards.create(cardSet)
-        .then((cardSet) => {
-            res.status(200).send(cardSet);
-        })
-        .catch((err) => {
-            res.status(500).send({ Error: err.message })
-        })
+    try{
+        let cards = await FlashCards.create(cardSet)
+        console.log(cards)
+        res.status(200).send(cardSet);
+    } catch(err){
+        if(err) res.status(500).send({ Error: err.message })
+    }
 }
+
+// const createCardSet = (req, res) => {
+//     let cardSet = req.body;
+//     console.log(cardSet)
+//     FlashCards.create(cardSet)
+//         .then((cardSet) => {
+//             res.status(200).send(cardSet);
+//         })
+//         .catch((err) => {
+//             res.status(500).send({ Error: err.message })
+//         })
+// }
 
 const editCardSet = (req, res) => {
     FlashCards.findByIdAndUpdate(req.params.id, { $set: req.body }, {new:true}, (err, cardSet) => {
