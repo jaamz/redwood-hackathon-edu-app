@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './header';
 import { StyleSheet, Text, View } from 'react-native';
 
 class Profile extends Component {
@@ -8,6 +9,7 @@ class Profile extends Component {
     render() { 
         return (  
             <View>
+                <Header />
                 <Text style={styles.textContainer}> This is my profile page!</Text>
             </View>
         );

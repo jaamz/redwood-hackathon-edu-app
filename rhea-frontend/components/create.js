@@ -10,7 +10,7 @@ class Create extends Component {
         description: '',
         term: '',
         definition: '',
-        cards: [{term: 'test', definition: 'test'}]
+        cards: []
     }
 
     submitSet = () => {

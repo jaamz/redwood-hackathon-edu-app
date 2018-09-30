@@ -1,14 +1,15 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image } from 'react-native';
 
 const Header = props => {
 
     return (
         <View>
             <View style={styles.container}>
-                <Text style={styles.font}>
-                    StudyBuddies 2.0
-                </Text>
+                <Image
+                style={styles.logoStyle}
+                source={require('../images/studybuddieslogo.png')}
+                />
             </View>
         </View>
     );
@@ -31,5 +32,9 @@ const styles = StyleSheet.create({
         fontSize:18,
         color:'white'
 
+    },
+    logoStyle: {
+        width: 220,
+        height: 30
     }
 })
