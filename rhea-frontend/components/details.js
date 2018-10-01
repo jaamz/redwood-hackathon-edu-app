@@ -19,11 +19,18 @@ class Details extends Component {
         // this.props.getCardSetById("5bae8ef3b93b002f1e577c90")
     }
 
+    deleteButton = () => {
+        
+    }
+
     render() { 
         let { selectedCardSet, isDataLoading } = this.props;
         return (  
             <View>
                 <View>
+                    <TouchableOpacity>
+                        <Text> X </Text>
+                    </TouchableOpacity>
                     { !isDataLoading ? 
                     <FlatList
                     data={ selectedCardSet.cards && selectedCardSet.cards }

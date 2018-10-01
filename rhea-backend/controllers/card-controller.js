@@ -54,16 +54,13 @@ const createCardSet = async (req,res) => {
     }
 }
 
-// const createCardSet = (req, res) => {
-//     let cardSet = req.body;
-//     console.log(cardSet)
-//     FlashCards.create(cardSet)
-//         .then((cardSet) => {
-//             res.status(200).send(cardSet);
-//         })
-//         .catch((err) => {
-//             res.status(500).send({ Error: err.message })
-//         })
+// const editCardSet = async (req,res) => {
+//     let { id } = req.params
+//     try {
+//         let selectedCard = await FlashCards.findByIdAndUpdate(id, { $set: req.body }, { new:true }, (err,cardSet)).exec();
+//         if(!selectedCard) res.status(404).send({ success: false, message: `Card not found by ID: ${ id } `})
+//         else res.status(200).send({ success: true })
+//     }
 // }
 
 const editCardSet = (req, res) => {
